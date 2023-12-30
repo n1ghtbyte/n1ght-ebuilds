@@ -15,10 +15,14 @@ KEYWORDS="~amd64"
 RDEPEND=">=dev-python/tomli-2.0.1
 		 >=dev-python/pyflakes-3.0.0"
 
-#pypi tarbal does not include tests
-RESTRICT="test"
+distutils_enable_tests unittest
 
 src_prepare() {
-		eapply_user
-		sed -Ei -e '/include/,/]/ { /(test_.*|LICENSE|README)/d }' pyproject.toml || die "Sed failed :-("
+	sed -Ei -e '/include/,/]/ { /(test_.*|LICENSE|README)/d }' pyproject.toml || die "Sed failed :-("
+	default
+}
+
+python_test() {
+	# unit test
+	eunittest -p "test_autoflake.py"
 }
