@@ -20,7 +20,7 @@ IUSE=""
 
 ruby_add_rdepend "
 	dev-ruby/googleapis-common-protos-types:1
-	>=dev-ruby/google-protobuf-3.24.4
+	dev-ruby/google-protobuf:3
 "
 
 each_ruby_configure() {
